@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>News classifier</title>
+</head>
+
+<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+.navbar-brand {
+ margin: auto;
+}
+#classify-button {
+ margin: auto
+ text-align:center
+ display:inline
+}
+.modebar{
+      display: none !important;
+}
+
+</style>
+<body>
+<nav class="navbar sticky-top bg-gradient-primary flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand navbar-dark  text-info" href="#">News classifier</a>
+
+<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target=".bd-example-modal-sm">About me</button>
+
+</nav>
+<br><br>
+<div class="container">
+    <form method="POST">
+        <div class="input-group">
+<textarea aria-label="text area" class="form-control" name="get_news" placeholder="Enter a snippet of a news" rows=3>{%if info%}{{info.news}}{% else %}{%endif%}
+</textarea>
+        </div>
+        <button class="btn btn-dark btn-sm float-right float-lg-right" id="classify-button" type="submit">Classify
+        </button>
+    </form>
+</div>
+<br>
+<div class="container">
+    <div>
+        <p class="lead text-justify text-center">
+{% if info %}
+{{ info.category}}:{{info.percent}}%
+            ({% if info.percent > 80 %}
+                <span>Highly confident</span>
+            {%else%}
+                <span>Less confident</span>
+            {% endif %})
+
+{% else %}
+{% endif %}
+        </p>
+    </div>
+    {% if plot %}
+    {{plot|safe}}
+    {% else %}
+    {%endif %}
+</div>
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <div class="container">
+  <p class="lead">My name is Rajan.</p><br>
+    <p>I am aspiring machine learning engineer. Passion about Deep learning and singularity</p>
+        <p>For any inquery please let know me
+            <a href="https://www.linkedin.com/in/rajanpaudel1">Linkedin</a>
+            <a href="https://github.com/rajan-blackboxes/">Github</a></p>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
