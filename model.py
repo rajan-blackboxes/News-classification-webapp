@@ -32,7 +32,6 @@ class LSTM(nn.Module):
             hidden_size,
             num_layers=n_layers,
             batch_first=True,
-            bidirectional=True
         )
         self.fc1 = nn.Linear(hidden_size, output_size)
 
