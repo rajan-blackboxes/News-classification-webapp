@@ -9,9 +9,14 @@ import torch
 
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device = torch.device('cpu')
-VOCAB = pickle.load(open('data/vocab.pkl', 'rb'))
-MODEL = torch.load('weights/best_model.pt', map_location=device)
-MODEL.to(device)
+
+
+def get_models(device_name, model_path='weights/best_model.pt', vocab_path='data/vocab.pkl'):
+    vocab = pickle.load(open(vocab_path, 'rb'))
+    model = torch.load(model_path, map_location=device_name)
+    model.to(device)
+    return vocab, model
+
 
 app = Flask(__name__)
 
@@ -28,7 +33,8 @@ def index():
     if request.method == 'POST':
         news = request.form.get('get_news')
     if (news != '') and (re.sub(r'\s', '', string=news) != ''):
-        probs_pd = pd.DataFrame.from_dict(classify(news.strip(), MODEL, VOCAB, device),
+        vocab, model = get_models(device)
+        probs_pd = pd.DataFrame.from_dict(classify(news.strip(), model, vocab, device),
                                           orient='index',
                                           columns=['Percentage'])
         plot_div = get_plot(probs_pd)
