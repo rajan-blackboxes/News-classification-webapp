@@ -1,4 +1,5 @@
 --find-links https://download.pytorch.org/whl/torch_stable.html
+gunicorn==20.04
 numpy==1.18.5
 tqdm==4.47.0
 Flask==1.1.2
