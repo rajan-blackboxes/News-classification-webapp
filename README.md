@@ -2,7 +2,7 @@
 # News-classification-webapp
 Web app to classify given News
 
-##App interface:
+## App interface:
 Here is look of app
 ![alt text](interface.png)
 
