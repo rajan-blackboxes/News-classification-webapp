@@ -30,3 +30,6 @@ It is simple app, However it can be make better
  
  ## References
  I've taken data from https://www.kaggle.com/amananandrai/ag-news-classification-dataset
+
+## License
+GPL-v3 
